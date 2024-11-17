@@ -25,7 +25,9 @@ const btnEncontrarCandidatos = document.getElementById("btnEncontrarCandidatos")
 // Añade un evento click al botón para encontrar combinaciones
 btnEncontrarCandidatos.addEventListener("click", () => {
     // Limpia el elemento de resultados
-    resultados.innerHTML ="" ;
+    resultados.innerHTML = "";
+    // Muestra la animación de carga
+    document.getElementById("loading").style.display = "block";
     // Convierte el valor objetivo a número
     const valorObjetivoNum = Number(valorObjetivo.value);
     // Convierte la lista de números a un array de números
@@ -36,6 +38,8 @@ btnEncontrarCandidatos.addEventListener("click", () => {
         // Crea un canal de comunicación para recibir la respuesta del service worker
         const messageChannel = new MessageChannel();
         messageChannel.port1.onmessage = event => {
+            // Oculta la animación de carga
+            document.getElementById("loading").style.display = "none";
             // Obtiene las combinaciones del mensaje recibido
             const combinaciones = event.data.combinaciones;
             // Muestra las combinaciones en el elemento de resultados
