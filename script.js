@@ -44,7 +44,9 @@ btnEncontrarCandidatos.addEventListener("click", () => {
             const combinaciones = event.data.combinaciones;
             const operaciones = event.data.operaciones;
             // Muestra el número de operaciones en el elemento de resultados
-            resultados.innerHTML += `Operaciones realizadas: ${operaciones}<br><br>`;
+            resultados.innerHTML += `Operaciones realizadas: ${operaciones}<br>`;
+            // cantidad de combinaciones encontradas
+            resultados.innerHTML += `Cantidad de combinaciones encontradas: ${combinaciones.length}<br><br>`;
             // Muestra las combinaciones en el elemento de resultados
             if (combinaciones.length === 1) {
                 resultados.innerHTML += `${combinaciones[0]} = ${valorObjetivoNum}`;
