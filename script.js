@@ -42,17 +42,21 @@ btnEncontrarCandidatos.addEventListener("click", () => {
             document.getElementById("loading").style.display = "none";
             // Obtiene las combinaciones del mensaje recibido
             const combinaciones = event.data.combinaciones;
+            const operaciones = event.data.operaciones;
+            // Muestra el número de operaciones en el elemento de resultados
+            resultados.innerHTML += `Operaciones realizadas: ${operaciones}<br><br>`;
             // Muestra las combinaciones en el elemento de resultados
             if (combinaciones.length === 1) {
-                resultados.innerHTML = `${combinaciones[0]} = ${valorObjetivoNum}`;
+                resultados.innerHTML += `${combinaciones[0]} = ${valorObjetivoNum}`;
             } else if (combinaciones.length > 1) {
                 combinaciones.forEach((combinacion) => {
                     resultados.innerHTML += `${combinacion.join(", ")} = ${valorObjetivoNum} <br>`;
                 });
                 
             } else {
-                resultados.innerHTML = "No se encontraron combinaciones";
+                resultados.innerHTML += "No se encontraron combinaciones";
             }
+            
         }
 
         // Envía un mensaje al service worker con los datos necesarios

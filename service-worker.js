@@ -15,9 +15,11 @@ self.addEventListener('message', event => {
     // Desestructuración de los datos recibidos en el mensaje
     const { valorObjetivoNum, listaDeNumerosArray } = event.data;
     const combinaciones = [];
+    let operaciones = 0;
 
     // Función recursiva para encontrar combinaciones que sumen el valor objetivo
     function encontrarCombinacionesRecursivas(remaining, start, currentCombination) {
+        operaciones++;
         // Si el valor restante es 0, se ha encontrado una combinación válida
         if (remaining === 0) {
             combinaciones.push([...currentCombination]);
@@ -41,5 +43,5 @@ self.addEventListener('message', event => {
     encontrarCombinacionesRecursivas(valorObjetivoNum, 0, []);
 
     // Envía las combinaciones encontradas de vuelta al cliente
-    event.ports[0].postMessage({ combinaciones: combinaciones });
+    event.ports[0].postMessage({ combinaciones: combinaciones, operaciones: operaciones });
 });
