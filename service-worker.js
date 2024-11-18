@@ -17,13 +17,15 @@ self.addEventListener('message', event => {
     const combinaciones = [];
     let operaciones = 0;
 
-    // Función iterativa para encontrar combinaciones que sumen el valor objetivo
-    function encontrarCombinacionesIterativas() {
-        const stack = [{ remaining: valorObjetivoNum, start: 0, currentCombination: [] }];
+    // Función heurística para encontrar combinaciones que sumen el valor objetivo
+    function encontrarCombinacionesHeuristicas() {
+        const priorityQueue = [{ remaining: valorObjetivoNum, start: 0, currentCombination: [], heuristic: valorObjetivoNum }];
         
-        while (stack.length > 0) {
+        while (priorityQueue.length > 0) {
             operaciones++;
-            const { remaining, start, currentCombination } = stack.pop();
+            // Ordenar la cola de prioridad por la heurística (menor primero)
+            priorityQueue.sort((a, b) => a.heuristic - b.heuristic);
+            const { remaining, start, currentCombination } = priorityQueue.shift();
             
             if (remaining === 0) {
                 combinaciones.push([...currentCombination]);
@@ -32,10 +34,14 @@ self.addEventListener('message', event => {
             
             for (let i = start; i < listaDeNumerosArray.length; i++) {
                 if (remaining - listaDeNumerosArray[i] >= 0) {
-                    stack.push({
-                        remaining: remaining - listaDeNumerosArray[i],
+                    const newCombination = [...currentCombination, listaDeNumerosArray[i]];
+                    const newRemaining = remaining - listaDeNumerosArray[i];
+                    const heuristic = newRemaining; // Heurística simple: valor restante
+                    priorityQueue.push({
+                        remaining: newRemaining,
                         start: i + 1,
-                        currentCombination: [...currentCombination, listaDeNumerosArray[i]]
+                        currentCombination: newCombination,
+                        heuristic: heuristic
                     });
                 }
             }
@@ -43,7 +49,7 @@ self.addEventListener('message', event => {
     }
 
     // Inicia la búsqueda de combinaciones
-    encontrarCombinacionesIterativas();
+    encontrarCombinacionesHeuristicas();
 
     // Envía las combinaciones encontradas de vuelta al cliente
     event.ports[0].postMessage({ combinaciones: combinaciones, operaciones: operaciones });
