@@ -96,7 +96,10 @@ button:hover {
 }
 
 @media (max-width: 700px) {
+	body {
+		padding: 20px;
+	}
 	.listadoDeBotones {
-        flex-direction: column;
+		flex-direction: column;
 	}
 }
