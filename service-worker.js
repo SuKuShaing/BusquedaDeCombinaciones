@@ -17,30 +17,33 @@ self.addEventListener('message', event => {
     const combinaciones = [];
     let operaciones = 0;
 
-    // Función recursiva para encontrar combinaciones que sumen el valor objetivo
-    function encontrarCombinacionesRecursivas(remaining, start, currentCombination) {
-        operaciones++;
-        // Si el valor restante es 0, se ha encontrado una combinación válida
-        if (remaining === 0) {
-            combinaciones.push([...currentCombination]);
-            return;
-        }
-        // Itera sobre los números en la lista
-        for (let i = start; i < listaDeNumerosArray.length; i++) {
-            // Si el número actual puede ser parte de la combinación
-            if (remaining - listaDeNumerosArray[i] >= 0) {
-                // Añade el número actual a la combinación
-                currentCombination.push(listaDeNumerosArray[i]);
-                // Llama recursivamente con el nuevo valor restante y la siguiente posición
-                encontrarCombinacionesRecursivas(remaining - listaDeNumerosArray[i], i + 1, currentCombination);
-                // Elimina el último número añadido para probar nuevas combinaciones
-                currentCombination.pop();
+    // Función iterativa para encontrar combinaciones que sumen el valor objetivo
+    function encontrarCombinacionesIterativas() {
+        const stack = [{ remaining: valorObjetivoNum, start: 0, currentCombination: [] }];
+        
+        while (stack.length > 0) {
+            operaciones++;
+            const { remaining, start, currentCombination } = stack.pop();
+            
+            if (remaining === 0) {
+                combinaciones.push([...currentCombination]);
+                continue;
+            }
+            
+            for (let i = start; i < listaDeNumerosArray.length; i++) {
+                if (remaining - listaDeNumerosArray[i] >= 0) {
+                    stack.push({
+                        remaining: remaining - listaDeNumerosArray[i],
+                        start: i + 1,
+                        currentCombination: [...currentCombination, listaDeNumerosArray[i]]
+                    });
+                }
             }
         }
     }
 
     // Inicia la búsqueda de combinaciones
-    encontrarCombinacionesRecursivas(valorObjetivoNum, 0, []);
+    encontrarCombinacionesIterativas();
 
     // Envía las combinaciones encontradas de vuelta al cliente
     event.ports[0].postMessage({ combinaciones: combinaciones, operaciones: operaciones });
