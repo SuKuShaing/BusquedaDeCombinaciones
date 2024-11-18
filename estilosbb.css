@@ -1,95 +1,102 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
 }
 
 body {
-    font-family: 'Roboto', sans-serif;
-    background-color: #f5f5f5;
-    padding: 100px;
+	font-family: "Roboto", sans-serif;
+	background-color: #f5f5f5;
+	padding: 100px;
 }
 
 main {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
 }
 
 h1 {
-    font-size: 2.5rem;
-    color: #333;
-    text-align: center;
+	font-size: 2.5rem;
+	color: #333;
+	text-align: center;
 }
 
 input {
-    width: 100%;
-    padding: 10px;
-    font-size: 1.2rem;
-    border: 1px solid #333;
-    border-radius: 5px;
+	width: 100%;
+	padding: 10px;
+	font-size: 1.2rem;
+	border: 1px solid #333;
+	border-radius: 5px;
 }
 
 textarea {
-    width: 100%;
-    padding: 10px;
-    font-size: 1.2rem;
-    border: 1px solid #333;
-    border-radius: 5px;
+	width: 100%;
+	padding: 10px;
+	font-size: 1.2rem;
+	border: 1px solid #333;
+	border-radius: 5px;
 }
 
 .listadoDeBotones {
-    display: flex;
-    justify-content: space-between;
-    gap: 10px;
+	display: flex;
+	justify-content: space-between;
+	gap: 10px;
 }
 
 button {
-    flex: 1;
-    min-width: 100px;
-    padding: 20px;
-    font-size: 1.2rem;
-    border: 1px solid #333;
-    border-radius: 5px;
-    background-color: #333;
-    color: #fff;
-    cursor: pointer;
+	flex: 1;
+	min-width: 100px;
+	padding: 20px;
+	font-size: 1.2rem;
+	border: 1px solid #333;
+	border-radius: 5px;
+	background-color: #333;
+	color: #fff;
+	cursor: pointer;
 }
 
 button:hover {
-    background-color: #555;
-    border-color: #555;
+	background-color: #555;
+	border-color: #555;
 }
 
 .loading {
-    font-size: 1.5rem;
-    color: #333;
-    text-align: center;
-    margin-top: 20px;
+	font-size: 1.5rem;
+	color: #333;
+	text-align: center;
+	margin-top: 20px;
 }
 
 .dot {
-    display: inline-block;
-    animation: bounce 1s infinite;
+	display: inline-block;
+	animation: bounce 1s infinite;
 }
 
 .dot:nth-child(1) {
-    animation-delay: 0s;
+	animation-delay: 0s;
 }
 
 .dot:nth-child(2) {
-    animation-delay: 0.2s;
+	animation-delay: 0.2s;
 }
 
 .dot:nth-child(3) {
-    animation-delay: 0.4s;
+	animation-delay: 0.4s;
 }
 
 @keyframes bounce {
-    0%, 100% {
-        transform: translateY(0);
-    }
-    50% {
-        transform: translateY(-10px);
-    }
+	0%,
+	100% {
+		transform: translateY(0);
+	}
+	50% {
+		transform: translateY(-10px);
+	}
+}
+
+@media (max-width: 700px) {
+	.listadoDeBotones {
+        flex-direction: column;
+	}
 }
