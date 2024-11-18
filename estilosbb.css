@@ -38,17 +38,27 @@ textarea {
     border-radius: 5px;
 }
 
-/* Botón que ocupe la mitad un cuarto del espacio disponible y con un mínimo que contenga el texto */
+.listadoDeBotones {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
 button {
-    width: 25%;
+    flex: 1;
     min-width: 100px;
-    padding: 10px;
+    padding: 20px;
     font-size: 1.2rem;
     border: 1px solid #333;
     border-radius: 5px;
     background-color: #333;
     color: #fff;
     cursor: pointer;
+}
+
+button:hover {
+    background-color: #555;
+    border-color: #555;
 }
 
 .loading {

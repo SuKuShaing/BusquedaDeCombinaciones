@@ -1,28 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BB solver</title>
-    <link rel="stylesheet" href="estilosbb.css">
-</head>
-<body>
-    <main>
-        <h1>Búsqueda de combinaciones</h1>
-        <input type="number" placeholder="Número Objetivo" id="valorObjetivo">
-        <textarea name="ingresoDeListaDeNumero" id="listaDeNumeros" placeholder="Ingrese la lista de números"></textarea>
-        <button id="btnEncontrar100">Buscar primeros 100</button>
-        <button id="btnEncontrarMil">Buscar primeros 1.000</button>
-        <button id="btnEncontrarCandidatos">Buscar todas las combinaciones</button>
-        <div id="loading" class="loading" style="display: none;">
-            Procesando
-            <span class="dot">.</span>
-            <span class="dot">.</span>
-            <span class="dot">.</span>
-        </div>
-        <h3>Candidatos posibles</h3>
-        <p id="resultados"></p>
-    </main>
-</body>
-<script src="./script.js"></script>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>BB solver</title>
+		<link rel="stylesheet" href="estilosbb.css" />
+	</head>
+	<body>
+		<main>
+			<h1>Búsqueda de combinaciones</h1>
+			<input type="number" placeholder="Número Objetivo" id="valorObjetivo" />
+			<textarea
+				name="ingresoDeListaDeNumero"
+				id="listaDeNumeros"
+				placeholder="Ingrese la lista de números"
+			></textarea>
+			<div class="listadoDeBotones">
+				<button id="btnEncontrar100">Buscar primeros 100</button>
+				<button id="btnEncontrarMil">Buscar primeros 1.000</button>
+				<button id="btnEncontrarCandidatos">
+					Buscar todas las combinaciones
+				</button>
+			</div>
+			<div id="loading" class="loading" style="display: none">
+				Procesando
+				<span class="dot">.</span>
+				<span class="dot">.</span>
+				<span class="dot">.</span>
+			</div>
+			<h3>Candidatos posibles</h3>
+			<p id="resultados"></p>
+		</main>
+	</body>
+	<script src="./script.js"></script>
 </html>
