@@ -13,7 +13,7 @@ self.addEventListener('activate', event => {
 // Evento que se dispara cuando se recibe un mensaje
 self.addEventListener('message', event => {
     // Desestructuración de los datos recibidos en el mensaje
-    const { valorObjetivoNum, listaDeNumerosArray } = event.data;
+    const { valorObjetivoNum, listaDeNumerosArray, limite } = event.data;
     const combinaciones = [];
     let operaciones = 0;
 
@@ -23,7 +23,8 @@ self.addEventListener('message', event => {
         // Si el valor restante es 0, se ha encontrado una combinación válida
         if (remaining === 0) {
             combinaciones.push([...currentCombination]);
-            return;
+            if (combinaciones.length >= limite) return true;
+            return false;
         }
         // Itera sobre los números en la lista
         for (let i = start; i < listaDeNumerosArray.length; i++) {
@@ -32,11 +33,12 @@ self.addEventListener('message', event => {
                 // Añade el número actual a la combinación
                 currentCombination.push(listaDeNumerosArray[i]);
                 // Llama recursivamente con el nuevo valor restante y la siguiente posición
-                encontrarCombinacionesRecursivas(remaining - listaDeNumerosArray[i], i + 1, currentCombination);
+                if (encontrarCombinacionesRecursivas(remaining - listaDeNumerosArray[i], i + 1, currentCombination)) return true;
                 // Elimina el último número añadido para probar nuevas combinaciones
                 currentCombination.pop();
             }
         }
+        return false;
     }
 
     // Inicia la búsqueda de combinaciones
