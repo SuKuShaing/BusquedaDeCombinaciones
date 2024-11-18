@@ -8,3 +8,4 @@ https://sukushaing.github.io/BusquedaDeCombinaciones/
 ### ToDo
 - [ ] hacerlo Mobile
 - [ ] Crear una rama, y que lo procese con un enfoque iterativo en vez de recursivo, para ver sí así no saturamos la memoria
+- [ ] Colocarle separador de miles al número de operaciones realizadas y a Cantidad de combinaciones 
