@@ -101,6 +101,28 @@ button:hover {
 	cursor: pointer;
 }
 
+.botonesAccion {
+	display: flex;
+	gap: 10px;
+	margin-top: 10px;
+}
+
+.botonesAccion button {
+	flex: 1;
+	padding: 10px;
+	font-size: 1rem;
+	border: 1px solid #333;
+	border-radius: 5px;
+	background-color: #333;
+	color: #fff;
+	cursor: pointer;
+}
+
+.botonesAccion button:hover {
+	background-color: #555;
+	border-color: #555;
+}
+
 @media (max-width: 700px) {
 	body {
 		padding: 20px;

@@ -54,7 +54,20 @@ function buscarCombinaciones(limite) {
 			)}<br><br>`; // Muestra la cantidad de combinaciones
 
 			if (combinaciones.length === 1) {
-				resultados.innerHTML += `<div class="unaCombinacion">${combinaciones[0]} = ${valorObjetivoNum}</div>`; // Muestra la única combinación encontrada
+				combinaciones.forEach((combinacion) => {
+					const combinacionDiv = document.createElement("div");
+					combinacionDiv.classList.add("unaCombinacion");
+					combinacionDiv.textContent = `${combinacion} = ${valorObjetivoNum}`;
+					combinacionDiv.addEventListener("click", () => {
+						document.querySelectorAll(".unaCombinacion").forEach((el) => {
+							el.style.fontWeight = "normal";
+						});
+						combinacionDiv.style.fontWeight = "bold";
+						mostrarBotones(combinacionDiv, combinacion);
+					});
+					resultados.appendChild(combinacionDiv);
+				});
+                // resultados.innerHTML += `<div class="unaCombinacion">${combinaciones[0]} = ${valorObjetivoNum}</div>`; // Muestra la única combinación encontrada
 			} else if (combinaciones.length > 1) {
 				combinaciones.forEach((combinacion) => {
 					const combinacionDiv = document.createElement("div");
@@ -65,6 +78,7 @@ function buscarCombinaciones(limite) {
 							el.style.fontWeight = "normal";
 						});
 						combinacionDiv.style.fontWeight = "bold";
+						mostrarBotones(combinacionDiv, combinacion);
 					});
 					resultados.appendChild(combinacionDiv);
 				});
@@ -83,6 +97,33 @@ function buscarCombinaciones(limite) {
 			[messageChannel.port2]
 		);
 	}
+}
+
+function mostrarBotones(combinacionDiv, combinacion) {
+	// Eliminar cualquier botón de acción existente
+	document.querySelectorAll(".botonesAccion").forEach((el) => el.remove());
+
+	const botonesDiv = document.createElement("div");
+	botonesDiv.classList.add("botonesAccion");
+
+	const btnBorrar = document.createElement("button");
+	btnBorrar.textContent = "Borrar Números de la lista";
+	btnBorrar.addEventListener("click", () => {
+		const listaActual = listaDeNumeros.value.split(",").map(Number);
+		const nuevaLista = listaActual.filter(num => !combinacion.includes(num));
+		listaDeNumeros.value = nuevaLista.join(",");
+		botonesDiv.remove();
+	});
+
+	const btnCancelar = document.createElement("button");
+	btnCancelar.textContent = "Cancelar";
+	btnCancelar.addEventListener("click", () => {
+		botonesDiv.remove();
+	});
+
+	botonesDiv.appendChild(btnBorrar);
+	botonesDiv.appendChild(btnCancelar);
+	combinacionDiv.appendChild(botonesDiv);
 }
 
 // Añadir eventos a los nuevos botones
