@@ -23,6 +23,7 @@ const resultados = document.getElementById("resultados");
 const btnEncontrarCandidatos = document.getElementById("btnEncontrarCandidatos");
 const btnEncontrar100 = document.getElementById("btnEncontrar100");
 const btnEncontrarMil = document.getElementById("btnEncontrarMil");
+const btnEncontrarDiez = document.getElementById("btnEncontrar10");
 
 // Función para manejar la búsqueda de combinaciones
 function buscarCombinaciones(limite) {
@@ -62,6 +63,7 @@ function buscarCombinaciones(limite) {
 // Añadir eventos a los nuevos botones
 btnEncontrar100.addEventListener("click", () => buscarCombinaciones(100)); // Evento para buscar combinaciones con límite 100
 btnEncontrarMil.addEventListener("click", () => buscarCombinaciones(1000)); // Evento para buscar combinaciones con límite 1000
+btnEncontrarDiez.addEventListener("click", () => buscarCombinaciones(10)); // Evento para buscar combinaciones con límite 10
 btnEncontrarCandidatos.addEventListener("click", () => {
     const confirmacion = confirm("La búsqueda puede ser muy intensiva en uso de los recursos de tu computador y puede hacer fallar la página. ¿Aceptas los riesgos?");
     if (confirmacion) {
