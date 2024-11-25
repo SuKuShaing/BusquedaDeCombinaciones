@@ -115,14 +115,14 @@ function mostrarBotones(combinacionDiv, combinacion) {
 		botonesDiv.remove();
 	});
 
-	const btnCancelar = document.createElement("button");
-	btnCancelar.textContent = "Cancelar";
-	btnCancelar.addEventListener("click", () => {
-		botonesDiv.remove();
-	});
+	// const btnCancelar = document.createElement("button");
+	// btnCancelar.textContent = "Cancelar";
+	// btnCancelar.addEventListener("click", () => {
+	// 	botonesDiv.remove();
+	// });
 
 	botonesDiv.appendChild(btnBorrar);
-	botonesDiv.appendChild(btnCancelar);
+	// botonesDiv.appendChild(btnCancelar);
 	combinacionDiv.appendChild(botonesDiv);
 }
 
