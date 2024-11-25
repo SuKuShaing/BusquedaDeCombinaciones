@@ -105,6 +105,12 @@ button:hover {
 	display: flex;
 	gap: 10px;
 	margin-top: 10px;
+	opacity: 0;
+	transition: opacity 0.2s ease-in-out;
+}
+
+.botonesAccion.transicion {
+	opacity: 1;
 }
 
 .botonesAccion button {

@@ -124,6 +124,11 @@ function mostrarBotones(combinacionDiv, combinacion) {
 	botonesDiv.appendChild(btnBorrar);
 	// botonesDiv.appendChild(btnCancelar);
 	combinacionDiv.appendChild(botonesDiv);
+	
+	// Añadir clase de transición después de un pequeño retraso
+	setTimeout(() => {
+		botonesDiv.classList.add("transicion");
+	}, 10);
 }
 
 // Añadir eventos a los nuevos botones
