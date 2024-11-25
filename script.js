@@ -54,15 +54,22 @@ function buscarCombinaciones(limite) {
 			)}<br><br>`; // Muestra la cantidad de combinaciones
 
 			if (combinaciones.length === 1) {
-				resultados.innerHTML += `${combinaciones[0]} = ${valorObjetivoNum}`; // Muestra la única combinación encontrada
+				resultados.innerHTML += `<div class="unaCombinacion">${combinaciones[0]} = ${valorObjetivoNum}</div>`; // Muestra la única combinación encontrada
 			} else if (combinaciones.length > 1) {
 				combinaciones.forEach((combinacion) => {
-					resultados.innerHTML += `${combinacion.join(
-						", "
-					)} = ${valorObjetivoNum} <br>`; // Muestra cada combinación encontrada
+					const combinacionDiv = document.createElement("div");
+					combinacionDiv.classList.add("unaCombinacion");
+					combinacionDiv.textContent = `${combinacion.join(", ")} = ${valorObjetivoNum}`;
+					combinacionDiv.addEventListener("click", () => {
+						document.querySelectorAll(".unaCombinacion").forEach((el) => {
+							el.style.fontWeight = "normal";
+						});
+						combinacionDiv.style.fontWeight = "bold";
+					});
+					resultados.appendChild(combinacionDiv);
 				});
 			} else {
-				resultados.innerHTML += "No se encontraron combinaciones"; // Muestra un mensaje si no se encontraron combinaciones
+				resultados.innerHTML += "<div>No se encontraron combinaciones</div>"; // Muestra un mensaje si no se encontraron combinaciones
 			}
 		};
 
