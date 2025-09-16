@@ -20,6 +20,16 @@ self.addEventListener('message', event => {
     // Función recursiva para encontrar combinaciones que sumen el valor objetivo
     function encontrarCombinacionesRecursivas(remaining, start, currentCombination) {
         operaciones++;
+        
+        // OPTIMIZACIÓN: Si la suma máxima posible de los números restantes es menor que remaining, no hay solución
+        let sumaMaximaRestante = 0;
+        for (let j = start; j < listaDeNumerosArray.length; j++) {
+            sumaMaximaRestante += listaDeNumerosArray[j];
+        }
+        if (sumaMaximaRestante < remaining) {
+            return false; // No hay forma de alcanzar el objetivo
+        }
+        
         // Si el valor restante es 0, se ha encontrado una combinación válida
         if (remaining === 0) {
             combinaciones.push([...currentCombination]);
